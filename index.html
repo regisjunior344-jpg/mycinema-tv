@@ -5,14 +5,14 @@
 <meta name="theme-color" content="#090d18"><title>Regim TV</title>
 <style>
 :root{color-scheme:dark;--bg:#090d18;--muted:#aab4c7;--accent:#a28cff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 78% 0,#39285d 0,transparent 40%),var(--bg);color:#f7f8fc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3px solid white;outline-offset:4px}
-header{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#080b13cc;gap:18px}.brand{font-size:24px;font-weight:850;letter-spacing:-1px;white-space:nowrap}.brand span{color:var(--accent)}nav{display:flex;gap:8px}nav button,.profile{border:0;border-radius:30px;padding:10px 17px;background:#ffffff12;color:#dce2ef}nav .active{background:#fff;color:#111}.header-right{display:flex;align-items:center;gap:18px}.ambient{display:flex;align-items:center;gap:9px;color:#aeb7c8;font-size:12px;white-space:nowrap}.ambient-time{font-size:18px;font-weight:750;letter-spacing:.2px;color:#f5f6fb;font-variant-numeric:tabular-nums}.ambient-date{color:#9ca7bb}.ambient-weather{color:#d8ddeb}.header-tools{display:flex;align-items:center;gap:8px}.icon-button{width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:#cbd2df;opacity:.86;transition:background .15s,opacity .15s}.icon-button:hover,.icon-button:focus-visible{background:#ffffff16;opacity:1}.icon-button svg{width:19px;height:19px;display:block}#playStore svg{width:20px;height:20px}@media(max-width:760px){header{padding:0 18px;gap:10px}.ambient{gap:6px}.ambient-date{display:none}.header-right{gap:8px}.ambient-time{font-size:16px}}@media(max-width:520px){header{height:66px}.ambient-weather{font-size:11px}.brand{font-size:20px}nav{gap:4px}nav button{padding:8px 10px;font-size:11px}.header-right{gap:5px}.icon-button{width:32px;height:32px}}
-.hero{min-height:410px;padding:55px 7vw;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,#090d18 0%,#090d18e8 38%,#090d1866 100%),radial-gradient(ellipse at 82% 40%,#815ca8,#30254f 40%,transparent 70%)}.copy{max-width:660px;width:58%;position:relative;z-index:1}.eyebrow{font-size:12px;letter-spacing:3px;color:#c8baff;font-weight:800}.hero h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:14px 0;letter-spacing:-3px}.meta{color:#d0d5e0}.synopsis{max-width:100%;color:#c3cada;line-height:1.6}
+*{box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden}body{margin:0;display:flex;flex-direction:column;background:radial-gradient(ellipse at 78% 0,#39285d 0,transparent 40%),var(--bg);color:#f7f8fc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3px solid #a28cff;outline-offset:4px;box-shadow:0 0 14px #7862bd88}
+header{height:74px;min-height:74px;flex:0 0 74px;position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#080b13cc;gap:18px}.brand{font-size:24px;font-weight:850;letter-spacing:-1px;white-space:nowrap}.brand span{color:var(--accent)}nav{display:flex;gap:8px}nav button,.profile{border:0;border-radius:30px;padding:10px 17px;background:#ffffff12;color:#dce2ef}nav .active{background:#fff;color:#111}.header-right{display:flex;align-items:center;gap:18px}.ambient{display:flex;align-items:center;gap:9px;color:#aeb7c8;font-size:12px;white-space:nowrap}.ambient-time{font-size:18px;font-weight:750;letter-spacing:.2px;color:#f5f6fb;font-variant-numeric:tabular-nums}.ambient-date{color:#9ca7bb}.ambient-weather{color:#d8ddeb}.header-tools{display:flex;align-items:center;gap:8px}.icon-button{width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:#cbd2df;opacity:.86;transition:background .15s,opacity .15s}.icon-button:hover,.icon-button:focus-visible{background:#ffffff16;opacity:1}.icon-button svg{width:19px;height:19px;display:block}#playStore svg{width:20px;height:20px}@media(max-width:760px){header{padding:0 18px;gap:10px}.ambient{gap:6px}.ambient-date{display:none}.header-right{gap:8px}.ambient-time{font-size:16px}}@media(max-width:520px){header{height:66px}.ambient-weather{font-size:11px}.brand{font-size:20px}nav{gap:4px}nav button{padding:8px 10px;font-size:11px}.header-right{gap:5px}.icon-button{width:32px;height:32px}}
+main{height:calc(100dvh - 74px);min-height:0;display:flex;flex-direction:column;overflow:hidden}.hero{height:410px;min-height:410px;flex:0 0 410px;padding:55px 7vw;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,#090d18 0%,#090d18e8 38%,#090d1866 100%),radial-gradient(ellipse at 82% 40%,#815ca8,#30254f 40%,transparent 70%)}.copy{max-width:660px;width:58%;position:relative;z-index:1}.eyebrow{font-size:12px;letter-spacing:3px;color:#c8baff;font-weight:800}.hero h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:14px 0;letter-spacing:-3px}.meta{color:#d0d5e0}.synopsis{max-width:100%;color:#c3cada;line-height:1.6}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.action{border:0;border-radius:9px;padding:12px 18px;background:#fff;color:#10131b;font-weight:750}.action.alt{background:#ffffff1c;border:1px solid #ffffff25;color:white}
-.content{padding:0 5vw 55px}.section{margin:25px 0}.section h2{font-size:21px;margin:0 0 13px}.rail{display:flex;gap:14px;overflow-x:auto;padding:5px 5px 17px;scrollbar-width:none}.tile{background-size:cover;background-position:center center;background-repeat:no-repeat;flex:0 0 150px;height:215px;border:0;border-radius:12px;position:relative;display:flex;align-items:end;text-align:left;padding:13px;background:linear-gradient(145deg,var(--a),var(--b));box-shadow:0 8px 22px #0006}.tile:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(0deg,#070914eF,transparent 75%)}.tile strong{position:relative;font-size:16px}.tile small{display:block;color:#d5d9e4;font-weight:500;margin-top:5px}.tile.selected,.catalog-tile.selected{outline:3px solid #8f78d6;outline-offset:2px;transform:scale(1.03);box-shadow:0 0 0 2px #7862bd44,0 0 16px #7862bd99,0 8px 26px #0008}
+.content{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:0 5vw 55px;scrollbar-width:thin;scrollbar-color:#65549a transparent}.section{margin:25px 0}.section h2{font-size:21px;margin:0 0 13px}.rail{display:flex;gap:14px;overflow-x:auto;padding:5px 5px 17px;scrollbar-width:none}.tile{background-size:cover;background-position:center center;background-repeat:no-repeat;flex:0 0 150px;height:215px;border:0;border-radius:12px;position:relative;display:flex;align-items:end;text-align:left;padding:13px;background:linear-gradient(145deg,var(--a),var(--b));box-shadow:0 8px 22px #0006}.tile:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(0deg,#070914eF,transparent 75%)}.tile strong{position:relative;font-size:16px}.tile small{display:block;color:#d5d9e4;font-weight:500;margin-top:5px}.tile.selected,.catalog-tile.selected{outline:3px solid #8f78d6;outline-offset:2px;transform:scale(1.03);box-shadow:0 0 0 2px #7862bd44,0 0 16px #7862bd99,0 8px 26px #0008}
 .section:not(.apps) .rail{padding:12px 12px 20px;margin:-7px -7px 0}.apps .rail{padding:12px 12px 20px;margin:-7px -7px 0}.apps .app{flex:0 0 145px;height:82px;border:1px solid #ffffff20;border-radius:12px;background:#ffffff0c;font-weight:750;transition:transform .16s,border-color .16s,background .16s}.apps .app.selected,.apps .app:focus-visible{outline:3px solid #8f78d6;outline-offset:3px;transform:scale(1.06);background:#ffffff20;border-color:#a18be8;box-shadow:0 0 0 2px #7862bd44,0 0 14px #7862bd88}.hero.app-mode{background-size:cover;background-position:center}.hero.app-mode .eyebrow{color:#d5c9ff}.hero.app-mode h1{font-size:clamp(48px,7vw,82px)}
-footer{padding:20px 5vw;color:#77839a;font-size:12px}
+footer{display:none}
 dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border-radius:16px;background:#151d2d;color:white;padding:23px}dialog::backdrop{background:#000b}label{font-size:13px;color:#c4ccda}input,textarea,select{width:100%;padding:11px;margin:6px 0 14px;border:1px solid #45516a;border-radius:8px;background:#090f1c;color:white;font:inherit}.dialog-actions{display:flex;justify-content:flex-end;gap:8px}.note{font-size:12px;color:#9aa6bb;line-height:1.5}
 .catalog-tile{overflow:hidden;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;flex:0 0 150px;height:225px;border:0;border-radius:12px;position:relative;display:flex;align-items:end;text-align:left;padding:13px;background-color:#20283a;box-shadow:0 8px 22px #0006}.catalog-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.catalog-tile:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(0deg,#070914ef,transparent 78%)}.catalog-tile strong{position:relative;font-size:15px}.catalog-tile small{display:block;color:#d5d9e4;font-weight:500;margin-top:5px}
 .tile{background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}
@@ -56,7 +56,7 @@ function show(m){document.querySelectorAll(".apps .app").forEach(b=>b.classList.
 const appInfo=[{name:"UniTV",symbol:"▶",kind:"LIVE TV & STREAMING",desc:"Your entertainment hub. Open UniTV to explore available channels and content.",colors:["#3b286d","#11182d"]},{name:"Stremio",symbol:"◉",kind:"STREAMING LIBRARY",desc:"Bring your movies and series together in one place with Stremio.",colors:["#174d59","#101a2b"]},{name:"YouTube",symbol:"▶",kind:"VIDEO & ENTERTAINMENT",desc:"Discover videos, creators, music and trailers on YouTube.",colors:["#642329","#171321"]},{name:"Prime Video",symbol:"⌂",kind:"MOVIES & SERIES",desc:"Explore movies, series and exclusive entertainment with Prime Video.",colors:["#123c58","#101a2d"]},{name:"Globoplay",symbol:"◎",kind:"BRAZILIAN ENTERTAINMENT",desc:"Brazilian series, novelas, films and live channels with Globoplay.",colors:["#6b263e","#191326"]}];
 function showApp(i){const a=appInfo[i];if(!a)return;document.querySelectorAll(".tile.selected,.catalog-tile.selected").forEach(b=>b.classList.remove("selected"));document.querySelector(".hero").classList.add("app-mode");document.querySelector(".hero").style.backgroundImage="linear-gradient(90deg,#090d18 0%,#090d18d9 45%,#090d1840 100%),radial-gradient(ellipse at 82% 40%,"+a.colors[0]+","+a.colors[1]+" 68%)";el("tag").textContent=a.kind;el("heroTitle").textContent=a.name;el("heroMeta").textContent="APPLICATION";el("heroSynopsis").textContent=a.desc;el("where").hidden=true;el("trailer").hidden=true;el("add").hidden=true;document.querySelectorAll(".apps .app").forEach((b,n)=>b.classList.toggle("selected",n===i));}
 function draw(){const data=current();selected=Math.max(0,Math.min(selected,data.length-1));el("listHeading").textContent=profile==="kids"?"Kids' watchlist":"My watchlist";el("kidsSection").hidden=true;el("kidsTrendingSection").hidden=profile!=="kids";el("trendingSection").hidden=profile==="kids";el("appsSection").hidden=profile==="kids";document.querySelectorAll(".apps .app").forEach(b=>b.classList.remove("selected"));el("list").innerHTML=data.map((m,i)=>'<button class="tile '+(i===selected?"selected":"")+'" data-i="'+i+'" style="--a:'+m.a+';--b:'+m.b+';'+(m.poster?'background-image:linear-gradient(0deg,#070914ef,transparent 75%),url('+JSON.stringify(m.poster)+');':'')+'"><strong>'+safe(m.title)+'<small>'+safe(m.year||"")+'</small></strong></button>').join("");el("kidsList").innerHTML=kids.map((m,i)=>'<button class="tile" data-k="'+i+'" style="--a:'+m.a+';--b:'+m.b+';'+(m.poster?'background-image:linear-gradient(0deg,#070914ef,transparent 75%),url('+JSON.stringify(m.poster)+');':'')+'"><strong>'+safe(m.title)+'<small>'+safe(m.year||"")+'</small></strong></button>').join("");el("list").querySelectorAll("[data-i]").forEach((b,i)=>{if(data[i]?.poster)b.style.backgroundImage='linear-gradient(0deg,#070914ef,transparent 75%), url("'+data[i].poster+'")';b.onclick=()=>choose(+b.dataset.i)});el("kidsList").querySelectorAll("[data-k]").forEach((b,i)=>{if(kids[i]?.poster)b.style.backgroundImage='linear-gradient(0deg,#070914ef,transparent 75%), url("'+kids[i].poster+'")';b.onclick=()=>{setProfile("kids");choose(+b.dataset.k)}});if(data.length)show(data[selected])}
-function choose(i){document.querySelectorAll(".apps .app").forEach(b=>b.classList.remove("selected"));document.querySelectorAll(".catalog-tile.selected").forEach(b=>b.classList.remove("selected"));selected=i;draw();el("heroTitle").scrollIntoView({behavior:"smooth",block:"start"})}
+function choose(i){document.querySelectorAll(".apps .app").forEach(b=>b.classList.remove("selected"));document.querySelectorAll(".catalog-tile.selected").forEach(b=>b.classList.remove("selected"));selected=i;draw()}
 function setProfile(p){profile=p;selected=0;document.querySelectorAll("[data-profile]").forEach(b=>b.classList.toggle("active",b.dataset.profile===p));draw()}
 document.querySelectorAll("[data-profile]").forEach(b=>b.onclick=()=>setProfile(b.dataset.profile));
 document.querySelectorAll(".apps .app").forEach((b,i)=>{b.tabIndex=0;b.addEventListener("focus",()=>showApp(i));b.addEventListener("click",()=>showApp(i));});
@@ -69,7 +69,7 @@ el("playStore").onclick=()=>window.open("https://play.google.com/store/apps","_b
 el("settings").onclick=()=>{el("tmdbKey").value=tmdbKey;el("settingsDialog").showModal()};
 el("settingsForm").onsubmit=async e=>{e.preventDefault();const k=el("tmdbKey").value.trim();if(!k)return;tmdbKey=k;localStorage.setItem("regim-tmdb-key",k);el("tmdbStatus").textContent="Connecting to TMDB...";try{const r=await fetch("https://api.themoviedb.org/3/configuration?api_key="+encodeURIComponent(k));if(!r.ok)throw new Error("Invalid key");const cfg=await r.json();localStorage.setItem("regim-tmdb-image-base",cfg.images.secure_base_url);el("settingsDialog").close();await enrichLists();await loadCatalog();}catch(err){el("tmdbStatus").textContent="Could not connect. Check your TMDB v3 API Key.";}};
 async function loadCatalog(){if(!tmdbKey)return;const base=localStorage.getItem("regim-tmdb-image-base")||"https://image.tmdb.org/t/p/";try{const [trend,animation]=await Promise.all([fetch("https://api.themoviedb.org/3/trending/movie/week?api_key="+encodeURIComponent(tmdbKey)+"&language=en-GB"),fetch("https://api.themoviedb.org/3/discover/movie?api_key="+encodeURIComponent(tmdbKey)+"&language=en-GB&with_genres=10751&sort_by=popularity.desc&primary_release_date.gte=2020-01-01&vote_count.gte=50&page=1")]);if(!trend.ok||!animation.ok)throw new Error("TMDB request failed");const convert=async(response,minYear=0)=>{const data=await response.json();return (data.results||[]).filter(m=>m.poster_path&&Number((m.release_date||"0000").slice(0,4))>=minYear).slice(0,15).map(m=>({title:m.title,year:(m.release_date||"").slice(0,4),genre:"",duration:"",desc:m.overview||"No synopsis available.",poster:base+"w500"+m.poster_path,backdrop:m.backdrop_path?base+"w1280"+m.backdrop_path:"",tmdbId:m.id,a:"#303b55",b:"#101725"}))};catalogItems.trending=await convert(trend,2023);catalogItems.kids=await convert(animation,2020);drawCatalog("trending","trendingRail");drawCatalog("kids","kidsTrendingRail");}catch(err){el("trendingRail").innerHTML='<p class="note">Could not load trending movies. Check your TMDB connection.</p>';el("kidsTrendingRail").innerHTML='<p class="note">Could not load family movies.</p>';}}
-function drawCatalog(key,railId){const items=catalogItems[key]||[];el(railId).innerHTML=items.map((m,i)=>'<button class="catalog-tile" data-catalog="'+key+'" data-index="'+i+'"><img class="catalog-poster" src="'+safe(m.poster)+'" alt="" loading="lazy"><strong>'+safe(m.title)+'<small>'+safe(m.year)+'</small></strong></button>').join("");el(railId).querySelectorAll("[data-catalog]").forEach(b=>{b.onclick=()=>{document.querySelectorAll(".apps .app").forEach(x=>x.classList.remove("selected"));document.querySelectorAll(".tile.selected,.catalog-tile.selected").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");const m=catalogItems[b.dataset.catalog][+b.dataset.index];show({...m,art:""});el("heroTitle").scrollIntoView({behavior:"smooth",block:"start"});};});}
+function drawCatalog(key,railId){const items=catalogItems[key]||[];el(railId).innerHTML=items.map((m,i)=>'<button class="catalog-tile" data-catalog="'+key+'" data-index="'+i+'"><img class="catalog-poster" src="'+safe(m.poster)+'" alt="" loading="lazy"><strong>'+safe(m.title)+'<small>'+safe(m.year)+'</small></strong></button>').join("");el(railId).querySelectorAll("[data-catalog]").forEach(b=>{b.onclick=()=>{document.querySelectorAll(".apps .app").forEach(x=>x.classList.remove("selected"));document.querySelectorAll(".tile.selected,.catalog-tile.selected").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");const m=catalogItems[b.dataset.catalog][+b.dataset.index];show({...m,art:""});};});}
 async function enrichOne(m){if(!tmdbKey)return m;try{const q=await fetch("https://api.themoviedb.org/3/search/movie?api_key="+encodeURIComponent(tmdbKey)+"&query="+encodeURIComponent(m.title)+"&year="+encodeURIComponent(m.year||"")+"&language=en-GB");if(!q.ok)return m;const data=await q.json();const hit=(data.results||[]).find(x=>x.poster_path||x.backdrop_path);if(!hit)return m;const base=localStorage.getItem("regim-tmdb-image-base")||"https://image.tmdb.org/t/p/";return {...m,year:hit.release_date?.slice(0,4)||m.year,desc:hit.overview||m.desc,poster:hit.poster_path?base+"w500"+hit.poster_path:"",backdrop:hit.backdrop_path?base+"w1280"+hit.backdrop_path:""};}catch{return m;}}
 async function enrichLists(){for(let i=0;i<adult.length;i++)adult[i]=await enrichOne(adult[i]);for(let i=0;i<kids.length;i++)kids[i]=await enrichOne(kids[i]);persist();draw();}
 if(tmdbKey){fetch("https://api.themoviedb.org/3/configuration?api_key="+encodeURIComponent(tmdbKey)).then(r=>r.ok?r.json():null).then(c=>{if(c?.images?.secure_base_url){localStorage.setItem("regim-tmdb-image-base",c.images.secure_base_url);enrichLists();loadCatalog();}}).catch(()=>{});}
@@ -77,9 +77,11 @@ el("add").onclick=()=>{el("target").value=profile;el("editor").showModal();el("n
 el("form").onsubmit=e=>{e.preventDefault();const title=el("name").value.trim();if(!title)return;const item={title,year:el("year").value.trim(),desc:el("desc").value.trim(),genre:"Added by you",a:"#6554a5",b:"#17243c",art:safe(title.toUpperCase())};const target=el("target").value;(target==="adult"?adult:kids).push(item);persist();el("editor").close();el("form").reset();setProfile(target);choose(current().length-1)};
 el("trailer").onclick=()=>{const m=current()[selected];if(m)window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(m.title+" trailer oficial"),"_blank","noopener")};
 el("where").onclick=()=>alert("Playback shortcuts and UniTV/Stremio integration will be configured in a later step. This version cannot launch playback in those apps yet.");
-let remoteZone="watchlist",remoteIndex=0;
+let remoteZone="nav",remoteIndex=0;
 function remoteRows(){
- const rows=[];
+ const nav=[...document.querySelectorAll('[data-profile]'),el("settings"),el("playStore")];
+ const actions=[el("where"),el("trailer"),el("add")].filter(b=>b&&!b.hidden);
+ const rows=[{id:"nav",items:nav.filter(b=>b&&!b.hidden)},{id:"actions",items:actions}];
  if(profile==="adult")rows.push({id:"apps",items:[...document.querySelectorAll(".apps .app")].filter(b=>!el("appsSection").hidden)});
  rows.push({id:"watchlist",items:[...el("list").querySelectorAll("[data-i]")]});
  if(profile==="adult"&&!el("trendingSection").hidden)rows.push({id:"trending",items:[...el("trendingRail").querySelectorAll("[data-catalog]")]});
@@ -88,34 +90,40 @@ function remoteRows(){
 }
 function remoteFocus(rowIndex,itemIndex){
  const rows=remoteRows();if(!rows.length)return;
- const r=rows[Math.max(0,Math.min(rowIndex,rows.length-1))];
- remoteZone=r.id;remoteIndex=Math.max(0,Math.min(itemIndex,r.items.length-1));
+ rowIndex=Math.max(0,Math.min(rowIndex,rows.length-1));
+ const r=rows[rowIndex];remoteZone=r.id;remoteIndex=Math.max(0,Math.min(itemIndex,r.items.length-1));
  const target=r.items[remoteIndex];target.focus({preventScroll:true});
- target.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
-}
-document.addEventListener("keydown",e=>{
- if(el("editor").open||el("settingsDialog").open)return;
- const key=e.key;
- if(!["ArrowRight","ArrowLeft","ArrowUp","ArrowDown","Enter"," "].includes(key))return;
- const rows=remoteRows();if(!rows.length)return;
- e.preventDefault();
- let rowIndex=rows.findIndex(r=>r.id===remoteZone);if(rowIndex<0)rowIndex=profile==="adult"?1:0;
- const row=rows[rowIndex];const focused=row.items[remoteIndex];
- if(key==="Enter"||key===" "){focused?.click();return;}
- if(key==="ArrowRight"||key==="ArrowLeft"){
-   const delta=key==="ArrowRight"?1:-1;
-   remoteFocus(rowIndex,(remoteIndex+delta+row.items.length)%row.items.length);
- }else{
-   const next=rowIndex+(key==="ArrowDown"?1:-1);
-   if(next>=0&&next<rows.length)remoteFocus(next,Math.min(remoteIndex,rows[next].items.length-1));
+ if(["apps","watchlist","trending","popular"].includes(r.id)){
+  const section=target.closest(".section");
+  if(section)section.scrollIntoView({behavior:"smooth",block:"nearest"});
+  target.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
  }
-});
-document.querySelectorAll(".apps .app").forEach((b,i)=>b.addEventListener("focus",()=>{remoteZone="apps";remoteIndex=i;}));
+}
+window.regimHandleRemoteKey=function(key){
+ if(el("editor").open||el("settingsDialog").open)return false;
+ const rows=remoteRows();if(!rows.length)return false;
+ let rowIndex=rows.findIndex(r=>r.id===remoteZone);if(rowIndex<0)rowIndex=0;
+ const row=rows[rowIndex];
+ if(key==="Enter"||key===" "){row.items[remoteIndex]?.click();return true;}
+ if(key==="ArrowRight"||key==="ArrowLeft"){
+  const delta=key==="ArrowRight"?1:-1;
+  remoteFocus(rowIndex,(remoteIndex+delta+row.items.length)%row.items.length);return true;
+ }
+ if(key==="ArrowDown"||key==="ArrowUp"){
+  const next=rowIndex+(key==="ArrowDown"?1:-1);
+  if(next>=0&&next<rows.length)remoteFocus(next,Math.min(remoteIndex,rows[next].items.length-1));
+  return true;
+ }
+ return false;
+};
+document.addEventListener("keydown",e=>{
+ if(!["ArrowRight","ArrowLeft","ArrowUp","ArrowDown","Enter"," "].includes(e.key))return;
+ if(window.regimHandleRemoteKey(e.key)){e.preventDefault();e.stopPropagation();}
+},true);
 document.addEventListener("focusin",e=>{
  const b=e.target;
- if(b.matches("#list [data-i]")){remoteZone="watchlist";remoteIndex=Number(b.dataset.i);}
- else if(b.matches("#trendingRail [data-catalog]")){remoteZone="trending";remoteIndex=Number(b.dataset.index);}
- else if(b.matches("#kidsTrendingRail [data-catalog]")){remoteZone="popular";remoteIndex=Number(b.dataset.index);}
+ for(const r of remoteRows()){const i=r.items.indexOf(b);if(i>=0){remoteZone=r.id;remoteIndex=i;break;}}
 });
 draw();
+setTimeout(()=>remoteFocus(0,0),350);
 </script></body></html>
