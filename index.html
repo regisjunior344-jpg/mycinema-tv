@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18"><title>MyCinema TV</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--muted:#aab4c7;--accent:#a28cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 78% 0,#39285d 0,transparent 40%),var(--bg);color:#f7f8fc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3px solid white;outline-offset:4px}
+header{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#080b13cc}.brand{font-size:24px;font-weight:850;letter-spacing:-1px}.brand span{color:var(--accent)}nav{display:flex;gap:8px}nav button,.profile{border:0;border-radius:30px;padding:10px 17px;background:#ffffff12;color:#dce2ef}nav .active{background:#fff;color:#111}
+.hero{min-height:410px;padding:55px 7vw;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,#090d18 0%,#090d18e8 38%,#090d1866 100%),radial-gradient(ellipse at 82% 40%,#815ca8,#30254f 40%,transparent 70%)}.copy{max-width:610px;position:relative}.eyebrow{font-size:12px;letter-spacing:3px;color:#c8baff;font-weight:800}.hero h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:14px 0;letter-spacing:-3px}.meta{color:#d0d5e0}.synopsis{max-width:560px;color:#c3cada;line-height:1.6}.poster-art{position:absolute;right:13%;width:220px;height:310px;border-radius:14px;background:linear-gradient(145deg,#f4aa63,#91445f 50%,#211b3f);box-shadow:0 25px 65px #0009;display:grid;place-items:center;text-align:center;font-size:32px;font-weight:900;transform:rotate(4deg);padding:18px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.action{border:0;border-radius:9px;padding:12px 18px;background:#fff;color:#10131b;font-weight:750}.action.alt{background:#ffffff1c;border:1px solid #ffffff25;color:white}
+.content{padding:0 5vw 55px}.section{margin:25px 0}.section h2{font-size:21px;margin:0 0 13px}.rail{display:flex;gap:14px;overflow-x:auto;padding:5px 5px 17px;scrollbar-width:none}.tile{flex:0 0 150px;height:215px;border:0;border-radius:12px;position:relative;display:flex;align-items:end;text-align:left;padding:13px;background:linear-gradient(145deg,var(--a),var(--b));box-shadow:0 8px 22px #0006}.tile:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(0deg,#070914eF,transparent 75%)}.tile strong{position:relative;font-size:16px}.tile small{display:block;color:#d5d9e4;font-weight:500;margin-top:5px}.tile.selected{outline:3px solid white;outline-offset:2px;transform:scale(1.03)}
+.apps .app{flex:0 0 145px;height:82px;border:1px solid #ffffff20;border-radius:12px;background:#ffffff0c;font-weight:750}
+footer{padding:20px 5vw;color:#77839a;font-size:12px}
+dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border-radius:16px;background:#151d2d;color:white;padding:23px}dialog::backdrop{background:#000b}label{font-size:13px;color:#c4ccda}input,textarea,select{width:100%;padding:11px;margin:6px 0 14px;border:1px solid #45516a;border-radius:8px;background:#090f1c;color:white;font:inherit}.dialog-actions{display:flex;justify-content:flex-end;gap:8px}.note{font-size:12px;color:#9aa6bb;line-height:1.5}
+@media(max-width:650px){header{padding:0 18px}.profile{display:none}nav button{padding:8px 11px;font-size:12px}.hero{padding:40px 22px;min-height:420px}.poster-art{right:-35px;opacity:.25;width:180px;height:260px}.copy{z-index:1}.content{padding:0 18px 40px}.tile{flex-basis:135px;height:195px}}
+</style></head>
+<body>
+<header><div class="brand">MY<span>CINEMA</span></div><nav><button class="active" data-profile="adult">Minha área</button><button data-profile="kids">Crianças</button></nav><div class="profile">● Perfil da família</div></header>
+<main>
+<section class="hero"><div class="copy"><div class="eyebrow" id="tag">DESTAQUE DA LISTA</div><h1 id="heroTitle">Duna: Parte Dois</h1><p class="meta" id="heroMeta">2024 · Ficção científica · 2h 46min</p><p class="synopsis" id="heroSynopsis">Paul Atreides se une a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram sua família.</p><div class="actions"><button class="action" id="where">Onde assistir?</button><button class="action alt" id="trailer">Trailer</button><button class="action alt" id="add">＋ Adicionar título</button></div></div><div class="poster-art" id="art">DUNE<br>PART TWO</div></section>
+<div class="content">
+<section class="section apps" id="appsSection"><h2>Seus aplicativos</h2><div class="rail"><button class="app">▶ &nbsp; UniTV</button><button class="app">◉ &nbsp; Stremio</button><button class="app">▶ &nbsp; YouTube</button><button class="app">⌂ &nbsp; Prime Video</button><button class="app">◎ &nbsp; Globoplay</button></div></section>
+<section class="section"><h2 id="listHeading">Minha lista</h2><div class="rail" id="list"></div></section>
+<section class="section" id="kidsSection" hidden><h2>Lista das crianças</h2><div class="rail" id="kidsList"></div></section>
+</div></main>
+<footer>MYCINEMA TV · Protótipo inicial · Listas armazenadas neste navegador.</footer>
+<dialog id="editor"><form method="dialog" id="form"><h2>Adicionar título</h2><label>Nome<input id="name" required placeholder="Ex.: Interestelar"></label><label>Ano<input id="year" inputmode="numeric" placeholder="2025"></label><label>Sinopse<textarea id="desc" rows="3" placeholder="Descrição opcional"></textarea></label><label>Lista<select id="target"><option value="adult">Minha lista</option><option value="kids">Lista das crianças</option></select></label><div class="dialog-actions"><button class="action alt" value="cancel">Cancelar</button><button class="action" id="save" value="default">Salvar</button></div><p class="note">Nesta versão, os títulos são adicionados manualmente e ficam salvos localmente neste navegador. A sincronização e a integração com catálogos serão etapas futuras.</p></form></dialog>
+<script>
+const defaultsAdult=[
+{title:"Duna: Parte Dois",year:"2024",genre:"Ficção científica",duration:"2h 46min",desc:"Paul Atreides se une a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram sua família.",a:"#f6a75d",b:"#211b3f",art:"DUNE<br>PART TWO"},
+{title:"Interestelar",year:"2014",genre:"Ficção científica",duration:"2h 49min",desc:"Uma equipe de exploradores viaja além desta galáxia para descobrir se a humanidade tem futuro entre as estrelas.",a:"#d18b5a",b:"#142b48",art:"INTER<br>STELLAR"},
+{title:"Oppenheimer",year:"2023",genre:"Drama",duration:"3h",desc:"A história do cientista J. Robert Oppenheimer e seu papel no desenvolvimento da primeira bomba atômica.",a:"#c87945",b:"#252033",art:"OPPEN<br>HEIMER"},
+{title:"Blade Runner 2049",year:"2017",genre:"Ficção científica",duration:"2h 44min",desc:"Um novo blade runner descobre um segredo que pode mergulhar o que resta da sociedade no caos.",a:"#e18b46",b:"#283d66",art:"BLADE<br>RUNNER"},
+{title:"O Batman",year:"2022",genre:"Ação",duration:"2h 56min",desc:"Batman investiga a corrupção em Gotham e enfrenta um assassino que deixa pistas enigmáticas.",a:"#53617d",b:"#111522",art:"THE<br>BATMAN"}];
+const defaultsKids=[
+{title:"Sonic 2",year:"2022",genre:"Aventura",desc:"Sonic e seus amigos enfrentam novos desafios em uma aventura cheia de velocidade.",a:"#39a7ed",b:"#102c75",art:"SONIC 2"},
+{title:"Super Mario Bros.",year:"2023",genre:"Animação",desc:"Mario e Luigi são transportados para um mundo mágico cheio de aventuras.",a:"#ef6a43",b:"#235d9b",art:"SUPER<br>MARIO"},
+{title:"Toy Story",year:"1995",genre:"Animação",desc:"Os brinquedos ganham vida quando os humanos não estão por perto.",a:"#50a6d8",b:"#244477",art:"TOY<br>STORY"},
+{title:"Meu Malvado Favorito 4",year:"2024",genre:"Animação",desc:"Gru e sua família vivem novas confusões com a chegada de um novo integrante.",a:"#f2ca54",b:"#5784a0",art:"DESPICABLE<br>ME"}];
+const load=(key,def)=>{try{return JSON.parse(localStorage.getItem(key))||def}catch{return def}};
+let adult=load("mycinema-adult",defaultsAdult),kids=load("mycinema-kids",defaultsKids),profile="adult",selected=0;
+const el=id=>document.getElementById(id),current=()=>profile==="adult"?adult:kids;
+function safe(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function persist(){localStorage.setItem("mycinema-adult",JSON.stringify(adult));localStorage.setItem("mycinema-kids",JSON.stringify(kids))}
+function show(m){el("heroTitle").textContent=m.title;el("heroMeta").textContent=[m.year,m.genre,m.duration].filter(Boolean).join(" · ");el("heroSynopsis").textContent=m.desc||"Adicione uma sinopse para este título.";el("art").innerHTML=m.art||safe(m.title.toUpperCase());el("tag").textContent=profile==="kids"?"ÁREA INFANTIL":"DESTAQUE DA LISTA"}
+function draw(){const data=current();selected=Math.max(0,Math.min(selected,data.length-1));el("listHeading").textContent=profile==="kids"?"Favoritos das crianças":"Minha lista";el("kidsSection").hidden=profile!=="kids";el("appsSection").hidden=profile==="kids";el("list").innerHTML=data.map((m,i)=>'<button class="tile '+(i===selected?"selected":"")+'" data-i="'+i+'" style="--a:'+m.a+';--b:'+m.b+'"><strong>'+safe(m.title)+'<small>'+safe(m.year||"")+'</small></strong></button>').join("");el("kidsList").innerHTML=kids.map((m,i)=>'<button class="tile" data-k="'+i+'" style="--a:'+m.a+';--b:'+m.b+'"><strong>'+safe(m.title)+'<small>'+safe(m.year||"")+'</small></strong></button>').join("");el("list").querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>choose(+b.dataset.i));el("kidsList").querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{setProfile("kids");choose(+b.dataset.k)});if(data.length)show(data[selected])}
+function choose(i){selected=i;draw();el("heroTitle").scrollIntoView({behavior:"smooth",block:"start"})}
+function setProfile(p){profile=p;selected=0;document.querySelectorAll("[data-profile]").forEach(b=>b.classList.toggle("active",b.dataset.profile===p));draw()}
+document.querySelectorAll("[data-profile]").forEach(b=>b.onclick=()=>setProfile(b.dataset.profile));
+el("add").onclick=()=>{el("target").value=profile;el("editor").showModal();el("name").focus()};
+el("form").onsubmit=e=>{e.preventDefault();const title=el("name").value.trim();if(!title)return;const item={title,year:el("year").value.trim(),desc:el("desc").value.trim(),genre:"Adicionado por você",a:"#6554a5",b:"#17243c",art:safe(title.toUpperCase())};const target=el("target").value;(target==="adult"?adult:kids).push(item);persist();el("editor").close();el("form").reset();setProfile(target);choose(current().length-1)};
+el("trailer").onclick=()=>{const m=current()[selected];if(m)window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(m.title+" trailer oficial"),"_blank","noopener")};
+el("where").onclick=()=>alert("O atalho de reprodução e a integração com UniTV/Stremio serão configurados numa próxima etapa. Esta versão ainda não controla a reprodução dos aplicativos.");
+document.addEventListener("keydown",e=>{if(el("editor").open)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();const n=current().length;if(n){selected=(selected+(e.key==="ArrowRight"?1:-1)+n)%n;draw();el("list").querySelector('[data-i="'+selected+'"]')?.scrollIntoView({block:"nearest",inline:"center"})}}});
+draw();
+</script></body></html>
