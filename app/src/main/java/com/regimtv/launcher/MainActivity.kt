@@ -36,6 +36,26 @@ class MainActivity : Activity() {
         webView.loadUrl("https://regisjunior344-jpg.github.io/mycinema-tv/")
     }
 
+
+    override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
+        if (event.action == android.view.KeyEvent.ACTION_DOWN) {
+            val key = when (event.keyCode) {
+                android.view.KeyEvent.KEYCODE_DPAD_UP -> "ArrowUp"
+                android.view.KeyEvent.KEYCODE_DPAD_DOWN -> "ArrowDown"
+                android.view.KeyEvent.KEYCODE_DPAD_LEFT -> "ArrowLeft"
+                android.view.KeyEvent.KEYCODE_DPAD_RIGHT -> "ArrowRight"
+                android.view.KeyEvent.KEYCODE_DPAD_CENTER,
+                android.view.KeyEvent.KEYCODE_ENTER -> "Enter"
+                else -> null
+            }
+            if (key != null && ::webView.isInitialized) {
+                webView.evaluateJavascript("window.regimHandleRemoteKey && window.regimHandleRemoteKey('$key')", null)
+                return true
+            }
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
     inner class LauncherBridge {
         @JavascriptInterface
         fun openPlayStore() {
