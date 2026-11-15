@@ -72,6 +72,45 @@ el("add").onclick=()=>{el("target").value=profile;el("editor").showModal();el("n
 el("form").onsubmit=e=>{e.preventDefault();const title=el("name").value.trim();if(!title)return;const item={title,year:el("year").value.trim(),desc:el("desc").value.trim(),genre:"Added by you",a:"#6554a5",b:"#17243c",art:safe(title.toUpperCase())};const target=el("target").value;(target==="adult"?adult:kids).push(item);persist();el("editor").close();el("form").reset();setProfile(target);choose(current().length-1)};
 el("trailer").onclick=()=>{const m=current()[selected];if(m)window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(m.title+" trailer oficial"),"_blank","noopener")};
 el("where").onclick=()=>alert("Playback shortcuts and UniTV/Stremio integration will be configured in a later step. This version cannot launch playback in those apps yet.");
-document.addEventListener("keydown",e=>{if(el("editor").open)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();const n=current().length;if(n){selected=(selected+(e.key==="ArrowRight"?1:-1)+n)%n;draw();el("list").querySelector('[data-i="'+selected+'"]')?.scrollIntoView({block:"nearest",inline:"center"})}}});
+let remoteZone="watchlist",remoteIndex=0;
+function remoteRows(){
+ const rows=[];
+ if(profile==="adult")rows.push({id:"apps",items:[...document.querySelectorAll(".apps .app")].filter(b=>!el("appsSection").hidden)});
+ rows.push({id:"watchlist",items:[...el("list").querySelectorAll("[data-i]")]});
+ if(profile==="adult"&&!el("trendingSection").hidden)rows.push({id:"trending",items:[...el("trendingRail").querySelectorAll("[data-catalog]")]});
+ if(profile==="kids"&&!el("kidsTrendingSection").hidden)rows.push({id:"popular",items:[...el("kidsTrendingRail").querySelectorAll("[data-catalog]")]});
+ return rows.filter(r=>r.items.length);
+}
+function remoteFocus(rowIndex,itemIndex){
+ const rows=remoteRows();if(!rows.length)return;
+ const r=rows[Math.max(0,Math.min(rowIndex,rows.length-1))];
+ remoteZone=r.id;remoteIndex=Math.max(0,Math.min(itemIndex,r.items.length-1));
+ const target=r.items[remoteIndex];target.focus({preventScroll:true});
+ target.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
+}
+document.addEventListener("keydown",e=>{
+ if(el("editor").open||el("settingsDialog").open)return;
+ const key=e.key;
+ if(!["ArrowRight","ArrowLeft","ArrowUp","ArrowDown","Enter"," "].includes(key))return;
+ const rows=remoteRows();if(!rows.length)return;
+ e.preventDefault();
+ let rowIndex=rows.findIndex(r=>r.id===remoteZone);if(rowIndex<0)rowIndex=profile==="adult"?1:0;
+ const row=rows[rowIndex];const focused=row.items[remoteIndex];
+ if(key==="Enter"||key===" "){focused?.click();return;}
+ if(key==="ArrowRight"||key==="ArrowLeft"){
+   const delta=key==="ArrowRight"?1:-1;
+   remoteFocus(rowIndex,(remoteIndex+delta+row.items.length)%row.items.length);
+ }else{
+   const next=rowIndex+(key==="ArrowDown"?1:-1);
+   if(next>=0&&next<rows.length)remoteFocus(next,Math.min(remoteIndex,rows[next].items.length-1));
+ }
+});
+document.querySelectorAll(".apps .app").forEach((b,i)=>b.addEventListener("focus",()=>{remoteZone="apps";remoteIndex=i;}));
+document.addEventListener("focusin",e=>{
+ const b=e.target;
+ if(b.matches("#list [data-i]")){remoteZone="watchlist";remoteIndex=Number(b.dataset.i);}
+ else if(b.matches("#trendingRail [data-catalog]")){remoteZone="trending";remoteIndex=Number(b.dataset.index);}
+ else if(b.matches("#kidsTrendingRail [data-catalog]")){remoteZone="popular";remoteIndex=Number(b.dataset.index);}
+});
 draw();
 </script></body></html>
