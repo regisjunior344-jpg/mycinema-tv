@@ -17,7 +17,7 @@ dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border
 @media(max-width:650px){header{padding:0 18px}.profile{display:none}nav button{padding:8px 11px;font-size:12px}.hero{padding:40px 22px;min-height:420px}.poster-art{right:-35px;opacity:.25;width:180px;height:260px}.copy{z-index:1}.content{padding:0 18px 40px}.tile{flex-basis:135px;height:195px}}
 </style></head>
 <body>
-<header><div class="brand">REGIM<span> TV</span></div><nav><button class="active" data-profile="adult">My area</button><button data-profile="kids">Kids</button></nav><div class="profile">● Family profile</div></header>
+<header><div class="brand">REGIM<span> TV</span></div><nav><button class="active" data-profile="adult">My area</button><button data-profile="kids">Kids</button></nav><button class="profile" id="settings">⚙ Settings</button></header>
 <main>
 <section class="hero"><div class="copy"><div class="eyebrow" id="tag">FEATURED TITLE</div><h1 id="heroTitle">Dune: Part Two</h1><p class="meta" id="heroMeta">2024 · Sci-Fi · 2h 46min</p><p class="synopsis" id="heroSynopsis">Paul Atreides joins Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.</p><div class="actions"><button class="action" id="where">Where to watch?</button><button class="action alt" id="trailer">Trailer</button><button class="action alt" id="add">+ Add title</button></div></div><div class="poster-art" id="art">DUNE<br>PART TWO</div></section>
 <div class="content">
@@ -26,6 +26,7 @@ dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border
 <section class="section" id="kidsSection" hidden><h2>Kids' watchlist</h2><div class="rail" id="kidsList"></div></section>
 </div></main>
 <footer>REGIM TV · Early prototype · Lists are stored in this browser.</footer>
+<dialog id="settingsDialog"><form method="dialog" id="settingsForm"><h2>TMDB connection</h2><p class="note">Enter your TMDB v3 API key. It will be saved only in this browser, not in the public GitHub project.</p><label>TMDB API Key<input id="tmdbKey" type="password" autocomplete="off" placeholder="Paste your v3 API key"></label><div class="dialog-actions"><button class="action alt" value="cancel">Cancel</button><button class="action" value="default">Save & connect</button></div><p class="note" id="tmdbStatus">TMDB data and images will load after connecting.</p></form></dialog>
 <dialog id="editor"><form method="dialog" id="form"><h2>Add title</h2><label>Title<input id="name" required placeholder="Ex.: Interestelar"></label><label>Year<input id="year" inputmode="numeric" placeholder="2025"></label><label>Synopsis<textarea id="desc" rows="3" placeholder="Descrição opcional"></textarea></label><label>Lista<select id="target"><option value="adult">My watchlist</option><option value="kids">Kids' watchlist</option></select></label><div class="dialog-actions"><button class="action alt" value="cancel">Cancel</button><button class="action" id="save" value="default">Save</button></div><p class="note">In this version, titles are added manually and saved in this browser only. Sync and catalogue integrations will come later.</p></form></dialog>
 <script>
 const defaultsAdult=[
@@ -42,6 +43,8 @@ const defaultsKids=[
 const load=(key,def)=>{try{return JSON.parse(localStorage.getItem(key))||def}catch{return def}};
 let adult=load("mycinema-adult",defaultsAdult),kids=load("mycinema-kids",defaultsKids),profile="adult",selected=0;
 const el=id=>document.getElementById(id),current=()=>profile==="adult"?adult:kids;
+let tmdbKey=localStorage.getItem("regim-tmdb-key")||"";
+
 function safe(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function persist(){localStorage.setItem("mycinema-adult",JSON.stringify(adult));localStorage.setItem("mycinema-kids",JSON.stringify(kids))}
 function show(m){el("heroTitle").textContent=m.title;el("heroMeta").textContent=[m.year,m.genre,m.duration].filter(Boolean).join(" · ");el("heroSynopsis").textContent=m.desc||"Add a synopsis for this title.";el("art").innerHTML=m.art||safe(m.title.toUpperCase());el("tag").textContent=profile==="kids"?"KIDS' AREA":"FEATURED TITLE"}
@@ -49,6 +52,12 @@ function draw(){const data=current();selected=Math.max(0,Math.min(selected,data.
 function choose(i){selected=i;draw();el("heroTitle").scrollIntoView({behavior:"smooth",block:"start"})}
 function setProfile(p){profile=p;selected=0;document.querySelectorAll("[data-profile]").forEach(b=>b.classList.toggle("active",b.dataset.profile===p));draw()}
 document.querySelectorAll("[data-profile]").forEach(b=>b.onclick=()=>setProfile(b.dataset.profile));
+
+el("settings").onclick=()=>{el("tmdbKey").value=tmdbKey;el("settingsDialog").showModal()};
+el("settingsForm").onsubmit=async e=>{e.preventDefault();const k=el("tmdbKey").value.trim();if(!k)return;tmdbKey=k;localStorage.setItem("regim-tmdb-key",k);el("tmdbStatus").textContent="Connecting to TMDB...";try{const r=await fetch("https://api.themoviedb.org/3/configuration?api_key="+encodeURIComponent(k));if(!r.ok)throw new Error("Invalid key");const cfg=await r.json();localStorage.setItem("regim-tmdb-image-base",cfg.images.secure_base_url);el("settingsDialog").close();await enrichLists();}catch(err){el("tmdbStatus").textContent="Could not connect. Check your TMDB v3 API Key.";}};
+async function enrichOne(m){if(!tmdbKey)return m;try{const q=await fetch("https://api.themoviedb.org/3/search/movie?api_key="+encodeURIComponent(tmdbKey)+"&query="+encodeURIComponent(m.title)+"&language=en-GB");if(!q.ok)return m;const data=await q.json();const hit=(data.results||[]).find(x=>x.poster_path||x.backdrop_path);if(!hit)return m;const base=localStorage.getItem("regim-tmdb-image-base")||"https://image.tmdb.org/t/p/";return {...m,year:hit.release_date?.slice(0,4)||m.year,desc:hit.overview||m.desc,poster:hit.poster_path?base+"w500"+hit.poster_path:"",backdrop:hit.backdrop_path?base+"w1280"+hit.backdrop_path:""};}catch{return m;}}
+async function enrichLists(){for(let i=0;i<adult.length;i++)adult[i]=await enrichOne(adult[i]);for(let i=0;i<kids.length;i++)kids[i]=await enrichOne(kids[i]);persist();draw();}
+if(tmdbKey){fetch("https://api.themoviedb.org/3/configuration?api_key="+encodeURIComponent(tmdbKey)).then(r=>r.ok?r.json():null).then(c=>{if(c?.images?.secure_base_url){localStorage.setItem("regim-tmdb-image-base",c.images.secure_base_url);enrichLists();}}).catch(()=>{});}
 el("add").onclick=()=>{el("target").value=profile;el("editor").showModal();el("name").focus()};
 el("form").onsubmit=e=>{e.preventDefault();const title=el("name").value.trim();if(!title)return;const item={title,year:el("year").value.trim(),desc:el("desc").value.trim(),genre:"Added by you",a:"#6554a5",b:"#17243c",art:safe(title.toUpperCase())};const target=el("target").value;(target==="adult"?adult:kids).push(item);persist();el("editor").close();el("form").reset();setProfile(target);choose(current().length-1)};
 el("trailer").onclick=()=>{const m=current()[selected];if(m)window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(m.title+" trailer oficial"),"_blank","noopener")};
