@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090d18"><title>MyCinema TV</title>
+<meta name="theme-color" content="#090d18"><title>Regim TV</title>
 <style>
 :root{color-scheme:dark;--bg:#090d18;--muted:#aab4c7;--accent:#a28cff}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 78% 0,#39285d 0,transparent 40%),var(--bg);color:#f7f8fc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -17,7 +17,7 @@ dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border
 @media(max-width:650px){header{padding:0 18px}.profile{display:none}nav button{padding:8px 11px;font-size:12px}.hero{padding:40px 22px;min-height:420px}.poster-art{right:-35px;opacity:.25;width:180px;height:260px}.copy{z-index:1}.content{padding:0 18px 40px}.tile{flex-basis:135px;height:195px}}
 </style></head>
 <body>
-<header><div class="brand">MY<span>CINEMA</span></div><nav><button class="active" data-profile="adult">My area</button><button data-profile="kids">Kids</button></nav><div class="profile">● Family profile</div></header>
+<header><div class="brand">MY<span>IM</span></div><nav><button class="active" data-profile="adult">My area</button><button data-profile="kids">Kids</button></nav><div class="profile">● Family profile</div></header>
 <main>
 <section class="hero"><div class="copy"><div class="eyebrow" id="tag">FEATURED TITLE</div><h1 id="heroTitle">Dune: Part Two</h1><p class="meta" id="heroMeta">2024 · Sci-Fi · 2h 46min</p><p class="synopsis" id="heroSynopsis">Paul Atreides joins Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.</p><div class="actions"><button class="action" id="where">Where to watch?</button><button class="action alt" id="trailer">Trailer</button><button class="action alt" id="add">+ Add title</button></div></div><div class="poster-art" id="art">DUNE<br>PART TWO</div></section>
 <div class="content">
@@ -25,7 +25,7 @@ dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border
 <section class="section"><h2 id="listHeading">My watchlist</h2><div class="rail" id="list"></div></section>
 <section class="section" id="kidsSection" hidden><h2>Kids' watchlist</h2><div class="rail" id="kidsList"></div></section>
 </div></main>
-<footer>MYCINEMA TV · Early prototype · Lists are stored in this browser.</footer>
+<footer>REGIM TV · Early prototype · Lists are stored in this browser.</footer>
 <dialog id="editor"><form method="dialog" id="form"><h2>Add title</h2><label>Title<input id="name" required placeholder="Ex.: Interestelar"></label><label>Year<input id="year" inputmode="numeric" placeholder="2025"></label><label>Synopsis<textarea id="desc" rows="3" placeholder="Descrição opcional"></textarea></label><label>Lista<select id="target"><option value="adult">My watchlist</option><option value="kids">Kids' watchlist</option></select></label><div class="dialog-actions"><button class="action alt" value="cancel">Cancel</button><button class="action" id="save" value="default">Save</button></div><p class="note">In this version, titles are added manually and saved in this browser only. Sync and catalogue integrations will come later.</p></form></dialog>
 <script>
 const defaultsAdult=[
