@@ -97,7 +97,7 @@ function remoteRows(){
  const actions=[el("where"),el("trailer"),el("add")].filter(b=>b&&!b.hidden);
  const rows=[{id:"nav",items:nav.filter(b=>b&&!b.hidden)},{id:"actions",items:actions}];
  
- if(profile==="search")rows.push({id:"searchresults",items:[...el("searchResults").querySelectorAll("[data-search-index]")]});else rows.push({id:"watchlist",items:[...el("list").querySelectorAll("[data-i]")]});
+ if(profile==="search"){rows.push({id:"searchinput",items:[el("titleSearchInput")]});rows.push({id:"searchresults",items:[...el("searchResults").querySelectorAll("[data-search-index]")]});}else rows.push({id:"watchlist",items:[...el("list").querySelectorAll("[data-i]")]});
  if(profile==="adult"&&!el("trendingSection").hidden)rows.push({id:"trending",items:[...el("trendingRail").querySelectorAll("[data-catalog]")]});
  if(profile==="kids"&&!el("kidsTrendingSection").hidden)rows.push({id:"popular",items:[...el("kidsTrendingRail").querySelectorAll("[data-catalog]")]});
  return rows.filter(r=>r.items.length);
