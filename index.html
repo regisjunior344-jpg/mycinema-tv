@@ -229,7 +229,22 @@ window.regimHandleRemoteKey=function(key){
   const delta=key==="ArrowRight"?1:-1;
   if(row.id==="nav"){if(delta>0){if(row.items[remoteIndex]?.id==="sideSettings"){const dest=rows.findIndex(r=>r.id==="settingsgrid");if(dest>=0)remoteFocus(dest,0);return true;}if(row.items[remoteIndex]?.id==="sideSearch"||row.items[remoteIndex]?.id==="sidePlay")return true;const destination=rows.findIndex(r=>r.id===(profile==="search"?"searchinput":"watchlist"));if(destination>=0){remoteFocus(destination,0);return true;}if(rows[rowIndex+1])remoteFocus(rowIndex+1,0);}else remoteFocus(rowIndex,Math.max(0,Math.min(row.items.length-1,remoteIndex+delta)));return true;}
   if(row.id==="settingsgrid"){const next=remoteIndex+delta;if(next>=0&&next<row.items.length)remoteFocus(rowIndex,next);else if(delta<0){const ni=rows[0].items.findIndex(b=>b.id==="sideSettings");remoteFocus(0,Math.max(0,ni));}return true;}
-  if(row.id==="appgrid"){const cols=4;if(delta<0&&remoteIndex%cols===0){remoteFocus(0,0);return true;}const next=remoteIndex+delta;if(next<0||next>=row.items.length)return true;remoteFocus(rowIndex,next);return true;}
+  if(row.id==="appgrid"){
+   const current=row.items[remoteIndex],cr=current?.getBoundingClientRect();
+   if(!cr)return true;
+   const candidates=row.items.map((item,index)=>({item,index,rect:item.getBoundingClientRect()})).filter(x=>x.index!==remoteIndex);
+   const sameRow=candidates.filter(x=>Math.abs((x.rect.top+x.rect.bottom-cr.top-cr.bottom)/2)<Math.max(24,cr.height*.45));
+   if(delta<0&&sameRow.length){
+    const left=sameRow.filter(x=>x.rect.right<=cr.left+8).sort((a,b)=>b.rect.right-a.rect.right)[0];
+    if(left){remoteFocus(rowIndex,left.index);return true;}
+    if(remoteIndex===0||!sameRow.some(x=>x.rect.left<cr.left)){remoteFocus(0,0);return true;}
+   }
+   if(delta>0&&sameRow.length){
+    const right=sameRow.filter(x=>x.rect.left>=cr.right-8).sort((a,b)=>a.rect.left-b.rect.left)[0];
+    if(right){remoteFocus(rowIndex,right.index);return true;}
+   }
+   return true;
+  }
   if(delta<0&&remoteIndex===0){const selectedId=appsMenuOpen?"sideHome":profile==="kids"?"sideKids":profile==="adult"?"sideAdult":profile==="search"?"sideSearch":"sideSettings";const ni=rows[0].items.findIndex(b=>b.id===selectedId);remoteFocus(0,Math.max(0,ni));return true;}
   if(delta>0&&remoteIndex===row.items.length-1)return true;
   remoteFocus(rowIndex,Math.max(0,Math.min(row.items.length-1,remoteIndex+delta)));return true;
@@ -239,7 +254,25 @@ window.regimHandleRemoteKey=function(key){
   if(row.id==="nav"){const next=remoteIndex+delta;if(next>=0&&next<row.items.length)remoteFocus(rowIndex,next);else if(delta>0&&rows[rowIndex+1])remoteFocus(rowIndex+1,0);return true;}
   if(row.id==="settingsgrid"){return true;}
   if(row.id==="settingsgrid"){return true;}
-  if(row.id==="appgrid"){const cols=4;const nextIndex=remoteIndex+delta*cols;if(nextIndex>=0&&nextIndex<row.items.length)remoteFocus(rowIndex,nextIndex);else if(delta<0)remoteFocus(0,1);return true;}
+  if(row.id==="appgrid"){
+   const current=row.items[remoteIndex],cr=current?.getBoundingClientRect();
+   if(!cr)return true;
+   const cx=(cr.left+cr.right)/2,cy=(cr.top+cr.bottom)/2;
+   const candidates=row.items.map((item,index)=>({index,rect:item.getBoundingClientRect()})).filter(x=>x.index!==remoteIndex);
+   const vertical=candidates.filter(x=>delta>0?(x.rect.top+x.rect.bottom)/2>cy+8:(x.rect.top+x.rect.bottom)/2<cy-8);
+   if(!vertical.length)return true;
+   vertical.sort((a,b)=>{
+    const ay=(a.rect.top+a.rect.bottom)/2,by=(b.rect.top+b.rect.bottom)/2;
+    const ax=Math.abs((a.rect.left+a.rect.right)/2-cx),bx=Math.abs((b.rect.left+b.rect.right)/2-cx);
+    return Math.abs(ay-cy)-Math.abs(by-cy)||ax-bx;
+   });
+   const best=vertical[0];
+   const bestY=(best.rect.top+best.rect.bottom)/2;
+   const nearestRow=vertical.filter(x=>Math.abs((x.rect.top+x.rect.bottom)/2-bestY)<Math.max(24,cr.height*.45));
+   nearestRow.sort((a,b)=>Math.abs((a.rect.left+a.rect.right)/2-cx)-Math.abs((b.rect.left+b.rect.right)/2-cx));
+   if(nearestRow[0])remoteFocus(rowIndex,nearestRow[0].index);
+   return true;
+  }
   if(delta<0&&row.id==="watchlist"){remoteFocus(rows.findIndex(x=>x.id==="actions"),0);return true;}
   if(delta<0&&row.id==="searchinput"){remoteFocus(rows.findIndex(x=>x.id==="actions"),0);return true;}
   if(delta>0&&row.id==="actions"){const target=rows.findIndex(x=>x.id==="watchlist"||x.id==="searchinput");if(target>=0)remoteFocus(target,0);return true;}
