@@ -11,8 +11,8 @@ android {
         applicationId = "com.regimtv.launcher"
         minSdk = 23
         targetSdk = 28
-        versionCode = 4
-        versionName = "0.4.0" // app cards, ambient colour and remote navigation
+        versionCode = 5
+        versionName = "0.5.0" // full branded app cards, catalogue focus and navigation polish
     }
 
     compileOptions {
