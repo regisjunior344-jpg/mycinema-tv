@@ -11,8 +11,8 @@ android {
         applicationId = "com.regimtv.launcher"
         minSdk = 23
         targetSdk = 28
-        versionCode = 5
-        versionName = "0.5.0" // full branded app cards, catalogue focus and navigation polish
+        versionCode = 6
+        versionName = "0.6.0" // focus-driven areas, settings cards and app favourites
     }
 
     compileOptions {
