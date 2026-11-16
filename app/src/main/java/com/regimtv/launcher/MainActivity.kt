@@ -10,6 +10,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import android.widget.Toast
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MainActivity : Activity() {
     private lateinit var webView: WebView
@@ -57,6 +59,24 @@ class MainActivity : Activity() {
     }
 
     inner class LauncherBridge {
+        @JavascriptInterface
+        fun getInstalledApps(): String {
+            val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+            val resolved = packageManager.queryIntentActivities(intent, 0)
+            val seen = mutableSetOf<String>()
+            val apps = JSONArray()
+            resolved.map { it.activityInfo }.sortedBy { it.loadLabel(packageManager).toString().lowercase() }.forEach { info ->
+                val pkg = info.packageName
+                if (pkg != packageName && seen.add(pkg)) {
+                    val item = JSONObject()
+                    item.put("name", info.loadLabel(packageManager).toString())
+                    item.put("packageName", pkg)
+                    apps.put(item)
+                }
+            }
+            return apps.toString()
+        }
+
         @JavascriptInterface
         fun openPlayStore() {
             runOnUiThread {
