@@ -11,8 +11,8 @@ android {
         applicationId = "com.regimtv.launcher"
         minSdk = 23
         targetSdk = 28
-        versionCode = 7
-        versionName = "0.7.0" // universal sidebar branding and navigation
+        versionCode = 8
+        versionName = "0.7.1" // navigation, profile rails and app icon presentation
     }
 
     compileOptions {
