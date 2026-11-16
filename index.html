@@ -98,7 +98,7 @@ let remoteZone="nav",remoteIndex=0;
 function remoteRows(){
  if(appsMenuOpen)return [{id:"appgrid",items:[...el("installedAppsGrid").querySelectorAll("button")]}];
  const nav=[el("sideHome"),el("sideAdult"),el("sideKids"),el("sideSearch"),el("sidePlay"),el("sideSettings")];
- const actions=[el("where"),el("trailer"),el("add")].filter(b=>b&&!b.hidden);
+ const actions=[el("where"),el("trailer"),el("add"),el("moreLess")].filter(b=>b&&!b.hidden);
  const rows=[{id:"nav",items:nav.filter(b=>b&&!b.hidden)},{id:"actions",items:actions}];
  
  if(profile==="search"){rows.push({id:"searchinput",items:[el("titleSearchInput")]});rows.push({id:"searchresults",items:[...el("searchResults").querySelectorAll("[data-search-index]")]});}else rows.push({id:"watchlist",items:[...el("list").querySelectorAll("[data-i]")]});
