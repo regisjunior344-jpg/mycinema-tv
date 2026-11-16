@@ -12,6 +12,11 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.util.Base64
+import java.io.ByteArrayOutputStream
 import android.widget.Toast
 import org.json.JSONArray
 import org.json.JSONObject
@@ -86,6 +91,19 @@ class MainActivity : Activity() {
                     val item = JSONObject()
                     item.put("name", info.loadLabel(packageManager).toString())
                     item.put("packageName", pkg)
+                    try {
+                        val drawable = info.loadIcon(packageManager)
+                        val width = if (drawable.intrinsicWidth > 0) drawable.intrinsicWidth else 96
+                        val height = if (drawable.intrinsicHeight > 0) drawable.intrinsicHeight else 96
+                        val bitmap = Bitmap.createBitmap(width.coerceAtMost(256), height.coerceAtMost(256), Bitmap.Config.ARGB_8888)
+                        val canvas = Canvas(bitmap)
+                        drawable.setBounds(0, 0, canvas.width, canvas.height)
+                        drawable.draw(canvas)
+                        val stream = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+                        item.put("icon", Base64.encodeToString(stream.toByteArray(), Base64.NO_WRAP))
+                        bitmap.recycle()
+                    } catch (_: Exception) { }
                     apps.put(item)
                 }
             }
