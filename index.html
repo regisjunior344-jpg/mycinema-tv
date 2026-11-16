@@ -66,6 +66,12 @@ dialog{max-width:480px;width:calc(100% - 30px);border:1px solid #ffffff28;border
 .section{scroll-margin-top:0}
 .section h2{padding-top:2px}
 .app-manager-dialog{width:min(620px,calc(100% - 36px));max-height:82vh;overflow:hidden}.app-manager-list{display:flex;flex-direction:column;gap:7px;max-height:58vh;overflow-y:auto;padding:4px}.app-manager-row{display:grid;grid-template-columns:38px minmax(0,1fr) 42px 42px 42px;align-items:center;gap:9px;padding:7px 9px;border:1px solid #ffffff18;border-radius:10px;background:#ffffff08}.app-manager-row img{width:34px;height:34px;object-fit:contain}.app-manager-row .manager-name{font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.app-manager-row button{height:36px;border:1px solid #ffffff22;border-radius:8px;background:#ffffff10;font-size:17px}.app-manager-row button:disabled{opacity:.25}.app-manager-row .manager-star{color:#f5cf62}.app-manager-row .manager-star.off{color:#8791a5}
+
+/* v0.7.0: universal sidebar branding and clearer navigation */
+.side-nav{padding-top:12px!important;gap:7px}
+.side-logo{height:42px;min-height:42px;display:flex;align-items:center;gap:3px;padding:0 9px 0 10px;margin:0 0 22px;color:#f7f8fc;font-size:15px;font-weight:900;letter-spacing:-.8px;white-space:nowrap;pointer-events:none}
+.side-logo b{color:var(--accent);font-weight:900}
+.side-brand{display:none!important}
 </style></head>
 <body>
 
@@ -244,10 +250,3 @@ el("sideSearch").onclick=()=>setProfile("search");el("sidePlay").onclick=()=>{if
 openAppsMenu();
 setTimeout(()=>remoteFocus(0,0),350);
 </script></body></html>
-<style>
-/* v0.7.0: universal sidebar branding and clearer navigation */
-.side-nav{padding-top:12px!important;gap:7px}
-.side-logo{height:42px;min-height:42px;display:flex;align-items:center;gap:3px;padding:0 9px 0 10px;margin:0 0 22px;color:#f7f8fc;font-size:15px;font-weight:900;letter-spacing:-.8px;white-space:nowrap;pointer-events:none}
-.side-logo b{color:var(--accent);font-weight:900}
-.side-brand{display:none!important}
-</style>
