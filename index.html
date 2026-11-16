@@ -119,7 +119,17 @@ function remoteFocus(rowIndex,itemIndex){
  }
 }
 window.regimHandleRemoteKey=function(key){
- if(el("editor").open||el("settingsDialog").open||el("settingsMenu").open||el("watchlistChooser").open)return false;
+ const openDialog=[el("settingsMenu"),el("settingsDialog"),el("watchlistChooser"),el("editor")].find(d=>d.open);
+ if(openDialog){
+  const controls=[...openDialog.querySelectorAll("button:not([hidden]),input:not([type=hidden]),select,textarea")].filter(x=>!x.disabled);
+  const active=document.activeElement;
+  let index=Math.max(0,controls.indexOf(active));
+  if(key==="Escape"||key==="Backspace"){openDialog.close();return true;}
+  if(key==="ArrowDown"||key==="ArrowRight"){controls[(index+1)%controls.length]?.focus();return true;}
+  if(key==="ArrowUp"||key==="ArrowLeft"){controls[(index-1+controls.length)%controls.length]?.focus();return true;}
+  if(key==="Enter"){if(active&&active.tagName==="BUTTON")active.click();else if(active&&active.tagName==="INPUT")active.focus();return true;}
+  return true;
+ }
  const rows=remoteRows();if(!rows.length)return false;
  let rowIndex=rows.findIndex(r=>r.id===remoteZone);if(rowIndex<0)rowIndex=0;
  const row=rows[rowIndex];
