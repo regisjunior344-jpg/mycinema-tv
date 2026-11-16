@@ -12,7 +12,7 @@ android {
         minSdk = 23
         targetSdk = 28
         versionCode = 8
-        versionName = "0.7.1" // navigation, profile rails and app icon presentation
+        versionName = "0.7.1" // navigation, profile rails, app manager and apps home customisation
     }
 
     compileOptions {
