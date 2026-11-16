@@ -11,8 +11,8 @@ android {
         applicationId = "com.regimtv.launcher"
         minSdk = 23
         targetSdk = 28
-        versionCode = 9
-        versionName = "0.7.2" // navigation, profile rails, app manager and apps home customisation
+        versionCode = 10
+        versionName = "0.7.3" // app grid layout, custom navigation and kids rail scrolling
     }
 
     compileOptions {
