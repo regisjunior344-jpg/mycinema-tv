@@ -12,7 +12,7 @@ android {
         minSdk = 23
         targetSdk = 28
         versionCode = 3
-        versionName = "0.3.0"
+        versionName = "0.3.0" // includes final focus and layout polish
     }
 
     compileOptions {
