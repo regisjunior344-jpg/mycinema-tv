@@ -11,8 +11,8 @@ android {
         applicationId = "com.regimtv.launcher"
         minSdk = 23
         targetSdk = 28
-        versionCode = 6
-        versionName = "0.6.0" // focus-driven areas, settings cards and app favourites
+        versionCode = 7
+        versionName = "0.7.0" // universal sidebar branding and navigation
     }
 
     compileOptions {
