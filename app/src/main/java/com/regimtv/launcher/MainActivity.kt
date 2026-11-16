@@ -71,7 +71,8 @@ class MainActivity : Activity() {
                 else -> null
             }
             if (key != null && ::webView.isInitialized) {
-                webView.evaluateJavascript("window.regimHandleRemoteKey ? window.regimHandleRemoteKey('$key') : false", null)
+                val deliveredKey = if (key == "Enter" && event.repeatCount > 0) "LongEnter" else key
+                webView.evaluateJavascript("window.regimHandleRemoteKey ? window.regimHandleRemoteKey('$deliveredKey') : false", null)
                 return true
             }
         }
