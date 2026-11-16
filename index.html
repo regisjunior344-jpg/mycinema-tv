@@ -48,8 +48,6 @@ let adult=load("mycinema-adult",defaultsAdult),kids=load("mycinema-kids",default
 const el=id=>document.getElementById(id),current=()=>profile==="adult"?adult:kids;
 function setSynopsis(text){const p=el("heroSynopsis"),more=el("moreLess");p.textContent=text||"";p.classList.remove("expanded");more.textContent="More";more.hidden=true;requestAnimationFrame(()=>{more.hidden=p.scrollHeight<=p.clientHeight+2;});}
 el("moreLess").onclick=()=>{const p=el("heroSynopsis"),expanded=p.classList.toggle("expanded");el("moreLess").textContent=expanded?"Less":"More";};
-function setSynopsis(text){const p=el("heroSynopsis");p.textContent=text||"";p.classList.remove("expanded");el("moreLess").textContent="More";el("moreLess").hidden=p.textContent.length<145;}
-el("moreLess").onclick=()=>{const p=el("heroSynopsis"),expanded=p.classList.toggle("expanded");el("moreLess").textContent=expanded?"Less":"More";};
 let tmdbKey=localStorage.getItem("regim-tmdb-key")||"";
 let catalogItems={trending:[],kids:[]};
 
