@@ -191,7 +191,7 @@ window.regimHandleRemoteKey=function(key){
  const rows=remoteRows();if(!rows.length)return false;
  let rowIndex=rows.findIndex(r=>r.id===remoteZone);if(rowIndex<0)rowIndex=0;
  const row=rows[rowIndex];
- if(key==="Escape"||key==="Backspace"){const navItems=remoteRows()[0]?.items||[];const targetIndex=appsMenuOpen?0:Math.max(0,navItems.findIndex(b=>b.id===(profile==="kids"?"sideKids":profile==="search"?"sideSearch":"sideAdult")));remoteFocus(0,targetIndex);return true;}
+ if(key==="Escape"||key==="Backspace"){const navItems=remoteRows()[0]?.items||[];const utility=el("utilityHome").hidden?"":el("utilityEyebrow").textContent;const targetId=appsMenuOpen?"sideHome":utility==="SETTINGS"?"sideSettings":utility==="SEARCH TITLE"?"sideSearch":utility==="GOOGLE PLAY STORE"?"sidePlay":profile==="kids"?"sideKids":profile==="search"?"sideSearch":"sideAdult";const targetIndex=Math.max(0,navItems.findIndex(b=>b.id===targetId));remoteFocus(0,targetIndex);return true;}
  if(key==="LongEnter"&&row.id==="appgrid"){openAppEditor(row.items[remoteIndex]);return true;}
  if(key==="Enter"||key===" "){if(row.id==="nav"){const b=row.items[remoteIndex];if(b?.id==="sideSettings"){remoteFocus(rows.findIndex(r=>r.id==="settingsgrid"),0);return true;}if(b?.id==="sideSearch"){showContentArea();setProfile("search");return true;}if(b?.id==="sidePlay"){if(window.RegimNative?.openPlayStore)window.RegimNative.openPlayStore();return true;}}row.items[remoteIndex]?.click();return true;}
  if(key==="ArrowRight"||key==="ArrowLeft"){
