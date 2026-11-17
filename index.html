@@ -310,7 +310,7 @@ window.regimHandleRemoteKey=function(key){
   if(delta>0&&row.id==="actions"){const target=rows.findIndex(x=>x.id==="watchlist"||x.id==="searchinput");if(target>=0)remoteFocus(target,0);return true;}
   if(delta<0&&row.id==="actions"&&rows.some(x=>x.id==="more")){remoteFocus(rows.findIndex(x=>x.id==="more"),0);return true;}
   if(delta>0&&row.id==="more"){remoteFocus(rows.findIndex(x=>x.id==="actions"),0);return true;}
-  const next=rowIndex+delta;if(next>=0&&next<rows.length)remoteFocus(next,Math.min(remoteIndex,rows[next].items.length-1));return true;
+  const next=rowIndex+delta;if(next>=0&&next<rows.length){const from=row.items[remoteIndex],to=rows[next].items,rails=["watchlist","trending","popular","searchresults"];let pick=Math.min(remoteIndex,to.length-1);if(from&&to.length&&rails.includes(row.id)&&rails.includes(rows[next].id)){const fr=from.getBoundingClientRect(),mid=fr.left+fr.width/2;let best=1e9;to.forEach((t,i)=>{const r=t.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<best){best=d;pick=i;}});}remoteFocus(next,pick);}return true;
  }
  return false;
 };
